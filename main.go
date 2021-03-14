@@ -180,6 +180,8 @@ func createAnnotations(failures []*failure) []*github.CheckRunAnnotation {
 			Message: github.String(f.Failure),
 		}
 
+		fmt.Printf("bouh 2 %+v\n", a)
+
 		if f.Position.Start.Line == f.Position.End.Line {
 			a.StartColumn = github.Int(f.Position.Start.Column)
 			a.EndColumn = github.Int(f.Position.End.Column)
@@ -228,7 +230,6 @@ func main() {
 
 	chunks := 1
 	for f := range ch {
-		fmt.Printf("bouh %+v\n", f)
 		failures = append(failures, f)
 
 		stats.Total++
