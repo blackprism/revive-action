@@ -79,6 +79,7 @@ func createCheck() *github.CheckRun {
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
+	fmt.Println(repoOwner, repoName)
 	check, _, err := client.Checks.CreateCheckRun(ctx, repoOwner, repoName, opts)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error while creating check-run:", err)
