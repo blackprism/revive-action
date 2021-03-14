@@ -40,9 +40,6 @@ func init() {
 		name = "revive-action"
 	}
 
-	fmt.Fprintln(os.Stderr, "Test error")
-
-
 	if env := os.Getenv(envToken); len(env) > 0 {
 		ghToken = env
 	} else {
@@ -231,6 +228,7 @@ func main() {
 
 	chunks := 1
 	for f := range ch {
+		fmt.Printf("bouh %+v\n", f)
 		failures = append(failures, f)
 
 		stats.Total++
