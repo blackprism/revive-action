@@ -212,7 +212,7 @@ func pushFailures(check *github.CheckRun, failures []*failure, stats *failureSta
 	}
 
 	for _, annotation := range opts.Output.Annotations {
-		fmt.Printf("%+v\n", annotation)
+		fmt.Println(annotation.Path, annotation.StartLine, annotation.Message)
 	}
 
 	wg.Done()
