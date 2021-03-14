@@ -4,7 +4,7 @@ set -e
 
 cd "$GITHUB_WORKSPACE"
 
-if [ ! -z "${INPUT_NAME}" ]; 
+if [ -n "${INPUT_NAME}" ];
 then
   export CHECK_NAME=$INPUT_NAME;
 else
@@ -13,7 +13,7 @@ fi
 
 LINT_PATH="./..."
 
-if [ ! -z "${INPUT_PATH}" ]; then LINT_PATH=$INPUT_PATH; fi
+if [ -n "${INPUT_PATH}" ]; then LINT_PATH=$INPUT_PATH; fi
 
 IFS=';' read -ra ADDR <<< "$INPUT_EXCLUDE"
 for i in "${ADDR[@]}"; do
