@@ -211,7 +211,9 @@ func pushFailures(check *github.CheckRun, failures []*failure, stats *failureSta
 		os.Exit(1)
 	}
 
-	fmt.Fprintln(os.Stderr, "status", resp.Status, resp.StatusCode)
+	for _, annotation := range opts.Output.Annotations {
+		fmt.Printf("%+v\n", annotation)
+	}
 
 	wg.Done()
 }
