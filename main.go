@@ -180,8 +180,6 @@ func createAnnotations(failures []*failure) []*github.CheckRunAnnotation {
 			Message: github.String(f.Failure),
 		}
 
-		fmt.Printf("bouh 2 %+v\n", a)
-
 		if f.Position.Start.Line == f.Position.End.Line {
 			a.StartColumn = github.Int(f.Position.Start.Column)
 			a.EndColumn = github.Int(f.Position.End.Column)
@@ -206,11 +204,14 @@ func pushFailures(check *github.CheckRun, failures []*failure, stats *failureSta
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	if _, _, err := client.Checks.UpdateCheckRun(
-		ctx, repoOwner, repoName, check.GetID(), opts); err != nil {
+	_, resp, err := client.Checks.UpdateCheckRun(
+		ctx, repoOwner, repoName, check.GetID(), opts)
+	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error while updating check-run:", err)
 		os.Exit(1)
 	}
+
+	fmt.Fprintln(os.Stderr, "status", resp.Status, resp.StatusCode)
 
 	wg.Done()
 }
