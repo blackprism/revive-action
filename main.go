@@ -204,7 +204,7 @@ func pushFailures(check *github.CheckRun, failures []*failure, stats *failureSta
 	ctx, cancel := context.WithTimeout(context.Background(), 30*time.Second)
 	defer cancel()
 
-	_, resp, err := client.Checks.UpdateCheckRun(
+	_, _, err := client.Checks.UpdateCheckRun(
 		ctx, repoOwner, repoName, check.GetID(), opts)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "Error while updating check-run:", err)
