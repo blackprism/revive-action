@@ -1,9 +1,8 @@
 #!/bin/bash
 
 set -e
-echo "la"
+
 cd "$GITHUB_WORKSPACE"
-echo "la2"
 
 if [ -n "${INPUT_NAME}" ];
 then

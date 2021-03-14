@@ -40,6 +40,9 @@ func init() {
 		name = "revive-action"
 	}
 
+	fmt.Fprintln(os.Stderr, "Test error")
+
+
 	if env := os.Getenv(envToken); len(env) > 0 {
 		ghToken = env
 	} else {
