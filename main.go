@@ -169,6 +169,8 @@ func createAnnotations(failures []*failure) []*github.CheckRunAnnotation {
 			level = "failure"
 		}
 
+		fmt.Println(f.Position.Start.Filename, f.Position.Start.Line)
+
 		a := &github.CheckRunAnnotation{
 			Path:            github.String(f.Position.Start.Filename),
 			StartLine:       github.Int(f.Position.Start.Line),
